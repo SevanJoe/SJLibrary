@@ -25,6 +25,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sevanjoe.demo.MainActivity" />
         </activity>
+        <activity
+            android:name=".ThirdActivity"
+            android:label="@string/title_activity_third"
+            android:parentActivityName=".SecondActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sevanjoe.demo.SecondActivity" />
+        </activity>
     </application>
 
 </manifest>
