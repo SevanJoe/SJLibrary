@@ -14,28 +14,30 @@
  * limitations under the License.
  */
 
-package com.sevanjoe.demo;
+package com.sevanjoe.demo.ui;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.sevanjoe.demo.R;
 
-public class ThirdActivity extends ActionBarActivity {
+public class SecondActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_third);
+        setContentView(R.layout.activity_second);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_third, menu);
+        getMenuInflater().inflate(R.menu.menu_second, menu);
         return true;
     }
 
@@ -55,7 +57,6 @@ public class ThirdActivity extends ActionBarActivity {
     }
 
     public void testCrash(View view) {
-        String string = null;
-        System.out.print(string.equals("test"));
+        startActivity(new Intent(this, ThirdActivity.class));
     }
 }
