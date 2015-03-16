@@ -19,6 +19,8 @@ package com.sevanjoe.library.base;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.ComponentName;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Process;
 
@@ -33,18 +35,21 @@ import java.util.List;
 public class BaseApplication extends Application {
     @Override
     public void onCreate() {
+        if (!checkLaunch()) {
+            return;
+        }
         super.onCreate();
 
         CrashHandler.getInstance().init(this);
     }
 
-    protected boolean checkLaunch(String activityName) {
+    protected boolean checkLaunch() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             // use traditional way
             ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
             List<ActivityManager.RunningTaskInfo> runningTaskInfoList = activityManager.getRunningTasks(1);
             ComponentName componentName = runningTaskInfoList.get(0).topActivity;
-            if (!activityName.equals(componentName.getClassName())) {
+            if (!getLauncherActivityName().equals(componentName.getClassName())) {
                 LogUtil.d("prevent restart after application crash");
                 Process.killProcess(Process.myPid());
                 System.exit(0);
@@ -52,5 +57,11 @@ public class BaseApplication extends Application {
             }
         }
         return true;
+    }
+
+    private String getLauncherActivityName() {
+        PackageManager packageManager = getPackageManager();
+        Intent intent = packageManager.getLaunchIntentForPackage(getPackageName());
+        return intent.getComponent().getClassName();
     }
 }

@@ -59,6 +59,6 @@ public class MainActivity extends ActionBarActivity {
 
     public void showSecond(View view) {
         startActivity(new Intent(this, SecondActivity.class));
-        finish();
+//        finish();
     }
 }

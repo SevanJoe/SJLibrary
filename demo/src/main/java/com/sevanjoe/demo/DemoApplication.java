@@ -22,11 +22,5 @@ import com.sevanjoe.library.base.BaseApplication;
  * Created by Sevan Joe on 3/15/2015.
  */
 public class DemoApplication extends BaseApplication {
-    @Override
-    public void onCreate() {
-        if (!checkLaunch(MainActivity.class.getName())) {
-            return;
-        }
-        super.onCreate();
-    }
+
 }
