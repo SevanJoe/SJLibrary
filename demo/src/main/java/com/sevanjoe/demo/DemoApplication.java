@@ -16,9 +16,14 @@
 
 package com.sevanjoe.demo;
 
+import android.app.ActivityManager;
 import android.app.Application;
+import android.content.ComponentName;
+import android.os.Process;
 
 import com.sevanjoe.library.tools.CrashHandler;
+
+import java.util.List;
 
 /**
  * Created by Sevan Joe on 3/15/2015.
@@ -26,8 +31,24 @@ import com.sevanjoe.library.tools.CrashHandler;
 public class DemoApplication extends Application {
     @Override
     public void onCreate() {
+        if (!checkLaunch()) {
+            return;
+        }
         super.onCreate();
 
         CrashHandler.getInstance().init(this);
+    }
+
+    private boolean checkLaunch() {
+        ActivityManager activityManager = (ActivityManager) this.getSystemService(ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> taskInfoList = activityManager.getRunningTasks(1);
+        ComponentName componentName = taskInfoList.get(0).topActivity;
+        String name = MainActivity.class.getName();
+        if (!(name).equals(componentName.getClassName())) {
+            Process.killProcess(Process.myPid());
+            System.exit(0);
+            return false;
+        }
+        return true;
     }
 }

@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.sevanjoe.library"
+        applicationId "com.sevanjoe.demo"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1

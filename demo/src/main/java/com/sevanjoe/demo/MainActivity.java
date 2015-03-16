@@ -16,6 +16,7 @@
 
 package com.sevanjoe.demo;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -56,8 +57,8 @@ public class MainActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-    public void testCrash(View view) {
-        String string = null;
-        System.out.print(string.equals("test"));
+    public void showSecond(View view) {
+        startActivity(new Intent(this, SecondActivity.class));
+        finish();
     }
 }
