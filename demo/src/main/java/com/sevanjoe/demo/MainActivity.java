@@ -20,6 +20,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 /**
  * Created by Sevan Joe on 3/15/2015.
@@ -54,4 +55,9 @@ public class MainActivity extends ActionBarActivity {
 
 		return super.onOptionsItemSelected(item);
 	}
+
+    public void testCrash(View view) {
+        String string = null;
+        System.out.print(string.equals("test"));
+    }
 }
