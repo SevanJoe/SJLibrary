@@ -48,10 +48,11 @@ import java.util.Map;
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     private static CrashHandler INSTANCE = new CrashHandler();
-    private static final long CRASH_TIP_TIME = 3000;
+    private static final long CRASH_TIP_TIME = 1000;
 
-    private Thread.UncaughtExceptionHandler defaultHandler;
     private Context context;
+    private Thread.UncaughtExceptionHandler defaultHandler;
+
     private Map<String, String> infoMap = new HashMap<>();
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss", Locale.getDefault());
 
@@ -69,13 +70,15 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
      */
     public void init(Context context) {
         this.context = context;
+
         defaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
 
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
-        if (!handleException(ex) && defaultHandler != null) {
+        PreferenceHelper.getInstance().setCrashed(true);
+        if (!handleException(ex) && null != defaultHandler) {
             defaultHandler.uncaughtException(thread, ex);
         } else {
             try {
