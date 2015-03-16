@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sevanjoe.demo" >
 
-    <uses-permission android:name="android.permission.GET_TASKS" />
-
     <application
         android:name=".DemoApplication"
         android:allowBackup="true"

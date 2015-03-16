@@ -48,6 +48,8 @@ import java.util.Map;
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     private static CrashHandler INSTANCE = new CrashHandler();
+    private static final long CRASH_TIP_TIME = 3000;
+
     private Thread.UncaughtExceptionHandler defaultHandler;
     private Context context;
     private Map<String, String> infoMap = new HashMap<>();
@@ -77,7 +79,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             defaultHandler.uncaughtException(thread, ex);
         } else {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(CRASH_TIP_TIME);
             } catch (InterruptedException e) {
                 LogUtil.e("error: ", e);
             }
