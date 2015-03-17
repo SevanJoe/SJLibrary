@@ -55,8 +55,7 @@ public class RecyclerListActivity extends ActionBarActivity {
         swipeRefreshLoadLayout.setView(recyclerView);
         swipeRefreshLoadLayout.setMore(true);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         final RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(20);
         recyclerView.setAdapter(recyclerListAdapter);
 
