@@ -26,6 +26,7 @@ import android.widget.ListView;
 
 import com.sevanjoe.demo.R;
 import com.sevanjoe.demo.ui.adapter.RefreshListAdapter;
+import com.sevanjoe.library.widget.SwipeRefreshLoadLayout;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -33,9 +34,11 @@ import butterknife.InjectView;
 public class RefreshListActivity extends ActionBarActivity {
 
     @InjectView(R.id.refresh)
-    SwipeRefreshLayout swipeRefreshLayout;
+    SwipeRefreshLoadLayout swipeRefreshLoadLayout;
     @InjectView (R.id.list)
     ListView listView;
+
+    private RefreshListAdapter refreshListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +50,36 @@ public class RefreshListActivity extends ActionBarActivity {
     }
 
     private void initList() {
-        RefreshListAdapter refreshListAdapter = new RefreshListAdapter(20);
+        swipeRefreshLoadLayout.setColorSchemeResources(android.R.color.holo_red_light,
+                android.R.color.holo_green_light, android.R.color.holo_blue_light,
+                android.R.color.holo_orange_light);
+//        swipeRefreshLoadLayout.setSize(0);
+        swipeRefreshLoadLayout.setView(listView);
+        swipeRefreshLoadLayout.setMore(true);
+
+        refreshListAdapter = new RefreshListAdapter(20);
         listView.setAdapter(refreshListAdapter);
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        swipeRefreshLoadLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        swipeRefreshLayout.setRefreshing(false);
+                        swipeRefreshLoadLayout.setRefreshing(false);
+                    }
+                }, 3000);
+            }
+        });
+        swipeRefreshLoadLayout.setOnLoadListener(new SwipeRefreshLoadLayout.OnLoadListener() {
+            @Override
+            public void onLoadMore() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshListAdapter.addItem();
+                        swipeRefreshLoadLayout.setMore(false);
+                        swipeRefreshLoadLayout.setLoading(false);
                     }
                 }, 3000);
             }

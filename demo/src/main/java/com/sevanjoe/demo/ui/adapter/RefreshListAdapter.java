@@ -35,6 +35,11 @@ public class RefreshListAdapter extends BaseAdapter {
         this.size = size;
     }
 
+    public void addItem() {
+        ++size;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return size;
