@@ -69,6 +69,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void showRecycleList(View view) {
-        startActivity(new Intent(this, RecycleListActivity.class));
+        startActivity(new Intent(this, RecyclerListActivity.class));
     }
 }

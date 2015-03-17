@@ -16,8 +16,10 @@
 
 package com.sevanjoe.demo.ui;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -29,8 +31,10 @@ import com.sevanjoe.demo.ui.adapter.RecyclerListAdapter;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class RecycleListActivity extends ActionBarActivity {
+public class RecyclerListActivity extends ActionBarActivity {
 
+    @InjectView(R.id.refresh)
+    SwipeRefreshLayout swipeRefreshLayout;
     @InjectView(R.id.list)
     RecyclerView recyclerView;
 
@@ -46,8 +50,20 @@ public class RecycleListActivity extends ActionBarActivity {
     private void initList() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(10);
+        RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(20);
         recyclerView.setAdapter(recyclerListAdapter);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 3000);
+            }
+        });
     }
 
     @Override

@@ -17,6 +17,8 @@
 package com.sevanjoe.demo.ui;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +32,8 @@ import butterknife.InjectView;
 
 public class RefreshListActivity extends ActionBarActivity {
 
+    @InjectView(R.id.refresh)
+    SwipeRefreshLayout swipeRefreshLayout;
     @InjectView (R.id.list)
     ListView listView;
 
@@ -43,8 +47,20 @@ public class RefreshListActivity extends ActionBarActivity {
     }
 
     private void initList() {
-        RefreshListAdapter refreshListAdapter = new RefreshListAdapter(10);
+        RefreshListAdapter refreshListAdapter = new RefreshListAdapter(20);
         listView.setAdapter(refreshListAdapter);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 3000);
+            }
+        });
     }
 
     @Override

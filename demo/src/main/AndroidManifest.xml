@@ -42,7 +42,7 @@
                 android:value="com.sevanjoe.demo.ui.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.RecycleListActivity"
+            android:name=".ui.RecyclerListActivity"
             android:label="@string/title_activity_recycle_list"
             android:parentActivityName=".ui.MainActivity" >
             <meta-data

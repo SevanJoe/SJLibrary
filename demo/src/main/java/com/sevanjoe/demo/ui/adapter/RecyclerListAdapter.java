@@ -47,7 +47,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        viewHolder.textView.setText(viewHolder.textView.getText().toString() + " : " + i);
+        viewHolder.textView.setText("Recycle List : " + i);
     }
 
     @Override

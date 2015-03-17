@@ -26,6 +26,7 @@
                 tools:context="com.sevanjoe.demo.ui.RefreshListActivity">
 
     <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

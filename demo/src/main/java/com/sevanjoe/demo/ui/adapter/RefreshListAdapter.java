@@ -61,7 +61,7 @@ public class RefreshListAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.textView.setText(viewHolder.textView.getText().toString() + " : " + position);
+        viewHolder.textView.setText(parent.getContext().getString(R.string.show_list) + " : " + position);
         return convertView;
     }
 
