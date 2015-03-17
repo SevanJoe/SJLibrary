@@ -53,7 +53,6 @@ public class RefreshListActivity extends ActionBarActivity {
         swipeRefreshLoadLayout.setColorSchemeResources(android.R.color.holo_red_light,
                 android.R.color.holo_green_light, android.R.color.holo_blue_light,
                 android.R.color.holo_orange_light);
-//        swipeRefreshLoadLayout.setSize(0);
         swipeRefreshLoadLayout.setView(listView);
         swipeRefreshLoadLayout.setMore(true);
 

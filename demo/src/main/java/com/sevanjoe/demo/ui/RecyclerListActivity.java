@@ -27,6 +27,7 @@ import android.view.MenuItem;
 
 import com.sevanjoe.demo.R;
 import com.sevanjoe.demo.ui.adapter.RecyclerListAdapter;
+import com.sevanjoe.library.widget.SwipeRefreshLoadLayout;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -34,7 +35,7 @@ import butterknife.InjectView;
 public class RecyclerListActivity extends ActionBarActivity {
 
     @InjectView(R.id.refresh)
-    SwipeRefreshLayout swipeRefreshLayout;
+    SwipeRefreshLoadLayout swipeRefreshLoadLayout;
     @InjectView(R.id.list)
     RecyclerView recyclerView;
 
@@ -48,18 +49,37 @@ public class RecyclerListActivity extends ActionBarActivity {
     }
 
     private void initList() {
+        swipeRefreshLoadLayout.setColorSchemeResources(android.R.color.holo_red_light,
+                android.R.color.holo_green_light, android.R.color.holo_blue_light,
+                android.R.color.holo_orange_light);
+        swipeRefreshLoadLayout.setView(recyclerView);
+        swipeRefreshLoadLayout.setMore(true);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(20);
+        final RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(20);
         recyclerView.setAdapter(recyclerListAdapter);
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        swipeRefreshLoadLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        swipeRefreshLayout.setRefreshing(false);
+                        swipeRefreshLoadLayout.setRefreshing(false);
+                    }
+                }, 3000);
+            }
+        });
+        swipeRefreshLoadLayout.setOnLoadListener(new SwipeRefreshLoadLayout.OnLoadListener() {
+            @Override
+            public void onLoadMore() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recyclerListAdapter.addItem();
+                        swipeRefreshLoadLayout.setMore(false);
+                        swipeRefreshLoadLayout.setLoading(false);
                     }
                 }, 3000);
             }

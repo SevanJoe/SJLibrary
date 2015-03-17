@@ -39,6 +39,11 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
         this.size = size;
     }
 
+    public void addItem() {
+        ++size;
+        notifyDataSetChanged();
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_list, viewGroup, false);
