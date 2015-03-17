@@ -33,6 +33,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.SecondActivity" />
         </activity>
+        <activity
+            android:name=".ui.RefreshListActivity"
+            android:label="@string/title_activity_refresh_list"
+            android:parentActivityName=".ui.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sevanjoe.demo.ui.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -63,4 +63,8 @@ public class MainActivity extends ActionBarActivity {
         startActivity(new Intent(this, SecondActivity.class));
 //        finish();
     }
+
+    public void showList(View view) {
+        startActivity(new Intent(this, RefreshListActivity.class));
+    }
 }
