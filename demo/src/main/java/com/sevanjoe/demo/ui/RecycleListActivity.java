@@ -16,41 +16,44 @@
 
 package com.sevanjoe.demo.ui;
 
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import com.sevanjoe.demo.R;
-import com.sevanjoe.demo.ui.adapter.RefreshListAdapter;
+import com.sevanjoe.demo.ui.adapter.RecyclerListAdapter;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class RefreshListActivity extends ActionBarActivity {
+public class RecycleListActivity extends ActionBarActivity {
 
-    @InjectView (R.id.list)
-    ListView listView;
+    @InjectView(R.id.list)
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_refresh_list);
+        setContentView(R.layout.activity_recycle_list);
         ButterKnife.inject(this);
 
         initList();
     }
 
     private void initList() {
-        RefreshListAdapter refreshListAdapter = new RefreshListAdapter(10);
-        listView.setAdapter(refreshListAdapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        RecyclerListAdapter recyclerListAdapter = new RecyclerListAdapter(10);
+        recyclerView.setAdapter(recyclerListAdapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_refresh_list, menu);
+        getMenuInflater().inflate(R.menu.menu_recycle_list, menu);
         return true;
     }
 

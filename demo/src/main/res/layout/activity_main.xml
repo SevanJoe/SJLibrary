@@ -16,10 +16,17 @@
         android:onClick="showSecond"/>
 
     <com.gc.materialdesign.views.ButtonRectangle
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/show_list"
         android:onClick="showList"/>
+
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="@string/show_recycle_list"
+        android:onClick="showRecycleList"/>
 
 </RelativeLayout>
