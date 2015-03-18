@@ -18,6 +18,4 @@
     <string name="app_name">SJ Library</string>
 
     <string name="crash_tip">Sorry, the Application will exit due to an unexpected error.</string>
-
-    <string name="loading">loading…</string>
 </resources>
