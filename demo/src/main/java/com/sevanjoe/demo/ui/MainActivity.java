@@ -17,18 +17,18 @@
 package com.sevanjoe.demo.ui;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.sevanjoe.demo.R;
+import com.sevanjoe.library.base.BaseActivity;
 
 /**
  * Created by Sevan Joe on 3/15/2015.
  */
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
